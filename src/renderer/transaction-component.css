@@ -1,0 +1,119 @@
+.transaction-component-transaction-component {
+  gap: 275px;
+  width: 501px;
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding-top: 12px;
+  padding-left: 13px;
+  border-radius: 30px;
+  padding-right: 13px;
+  padding-bottom: 12px;
+  justify-content: space-between;
+  background-color: rgba(42, 43, 66, 1);
+}
+.transaction-component-task {
+  gap: -9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.transaction-component-golrend-logo2 {
+  gap: 10px;
+}
+.transaction-component-golrend-logo21 {
+  width: 72px;
+  height: 72px;
+  background-size: cover;
+  background-image: url(https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/5938/3642f63196a88bbbd17ba0e8db02f0134b5c696b.webp);
+}
+.transaction-component-task-info {
+  gap: 6px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+}
+.transaction-component-num-name-frame {
+  gap: 10px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding-top: 4px;
+  padding-left: 5px;
+  padding-right: 0;
+  padding-bottom: 4px;
+  justify-content: flex-start;
+}
+.transaction-component-num-frame {
+  gap: 10px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding-top: 3px;
+  padding-left: 14px;
+  border-radius: 8px;
+  padding-right: 14px;
+  padding-bottom: 3px;
+  justify-content: center;
+  background-color: rgba(106, 128, 205, 1);
+}
+.transaction-component-component {
+  color: white;
+  font-size: 13px;
+  text-align: center;
+  font-family: Gill Sans MT;
+  font-weight: 700;
+  line-height: normal;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}
+.transaction-component-name-frame {
+  gap: 10px;
+}
+.transaction-component-name {
+  color: rgba(115, 116, 150, 1);
+  font-size: 14px;
+  font-family: Gill Sans MT;
+  line-height: normal;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}
+.transaction-component-task-run-time {
+  color: rgba(115, 116, 150, 1);
+  font-size: 14px;
+  font-family: Gill Sans MT;
+  line-height: normal;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}
+.transaction-component-cost {
+  gap: 2px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: flex-end;
+  padding-top: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  flex-direction: column;
+  padding-bottom: 5px;
+  justify-content: center;
+}
+.transaction-component-total {
+  color: rgba(115, 116, 150, 1);
+  font-size: 16px;
+  text-align: right;
+  font-family: Gill Sans MT;
+  line-height: normal;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}
+.transaction-component-component1 {
+  color: white;
+  font-size: 16px;
+  text-align: right;
+  font-family: Gill Sans MT;
+  line-height: normal;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}

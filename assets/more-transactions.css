@@ -1,0 +1,12 @@
+.more-transactions-more-transactions {
+  width: 30px;
+  height: 30px;
+}
+
+#more-transactions-svg {
+  transition: stroke 300ms ease-in-out;
+}
+
+#more-transactions-svg:hover {
+  stroke: rgba(106, 128, 205, 100);
+}

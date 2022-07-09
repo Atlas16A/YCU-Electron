@@ -1,0 +1,12 @@
+.less-transactions-less-transactions {
+  width: 30px;
+  height: 30px;
+}
+
+#less-transactions-svg {
+  transition: stroke 300ms ease-in-out;
+}
+
+#less-transactions-svg:hover {
+  stroke: rgba(106, 128, 205, 100);
+}

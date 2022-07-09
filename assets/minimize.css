@@ -1,0 +1,12 @@
+.minimize-minimize {
+  width: 24px;
+  height: 24px;
+}
+
+#minimize-svg {
+  transition: stroke 300ms ease-in-out;
+}
+
+#minimize-svg:hover {
+  stroke: rgba(106, 128, 205, 100);
+}
