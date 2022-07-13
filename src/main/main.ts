@@ -13,8 +13,6 @@ import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { spawn, exec } from 'child_process';
-import { Readable } from 'stream';
-import webpackPaths from '../../.erb/configs/webpack.paths';
 import { resolveHtmlPath } from './util';
 
 class AppUpdater {
@@ -46,6 +44,7 @@ if (isDebug) {
 }
 
 const YagnaSource = path.join('release/app/binaries');
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let YagnaKey: any;
 
 console.log(YagnaSource);
