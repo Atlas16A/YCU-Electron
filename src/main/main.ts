@@ -45,16 +45,12 @@ if (isDebug) {
   require('electron-debug')();
 }
 
-const YagnaSource = isDebug
-  ? path.join(webpackPaths.appPath, 'binaries')
-  : path.join(__dirname, '../../binaries'); // In prod, __dirname is release/app/dist/main. We want release/app/yagna
+const YagnaSource = path.join('release/app/binaries');
 let YagnaKey: any;
 
 console.log(YagnaSource);
 
-const jq = isDebug
-  ? path.join(webpackPaths.appPath, 'binaries/jq.exe')
-  : path.join(__dirname, '../../binaries/jq.exe'); // In prod, __dirname is release/app/dist/main. We want release/app/jq
+const jq = path.join(YagnaSource, 'jq.exe');
 
 const createWindow = async () => {
   const RESOURCES_PATH = app.isPackaged

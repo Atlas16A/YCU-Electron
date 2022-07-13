@@ -170,7 +170,7 @@
       "dist",
       "node_modules",
       "package.json",
-      "binaries/"
+      "binaries"
     ],
     "afterSign": ".erb/scripts/notarize.js",
     "mac": {
