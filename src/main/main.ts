@@ -14,10 +14,8 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { spawn, exec } from 'child_process';
 import { Readable } from 'stream';
+import webpackPaths from '../../.erb/configs/webpack.paths';
 import { resolveHtmlPath } from './util';
-
-const YagnaSource = path.join(__dirname, '../../assets/yagna/');
-let YagnaKey: any;
 
 class AppUpdater {
   constructor() {
@@ -46,6 +44,17 @@ const isDebug =
 if (isDebug) {
   require('electron-debug')();
 }
+
+const YagnaSource = isDebug
+  ? path.join(webpackPaths.appPath, 'binaries')
+  : path.join(__dirname, '../../binaries'); // In prod, __dirname is release/app/dist/main. We want release/app/yagna
+let YagnaKey: any;
+
+console.log(YagnaSource);
+
+const jq = isDebug
+  ? path.join(webpackPaths.appPath, 'binaries/jq.exe')
+  : path.join(__dirname, '../../binaries/jq.exe'); // In prod, __dirname is release/app/dist/main. We want release/app/jq
 
 const createWindow = async () => {
   const RESOURCES_PATH = app.isPackaged
@@ -140,10 +149,7 @@ app
     setTimeout(function () {
       // Pulls Key from Yagna
       const YagnaGetAPPKEY = exec(
-        `yagna app-key list --json | ${path.join(
-          YagnaSource,
-          'jq.exe'
-        )} -r .values[0]`,
+        `yagna app-key list --json | ${jq} -r .values[][1]`,
         {
           env: { PATH: YagnaSource },
         }
@@ -162,38 +168,6 @@ app
         console.log(`Key Get process exited with code ${code}`);
       });
 
-      /* // Get public key
-      const YagnaGetpublic = exec('yagna id show', {
-        env: {
-          YAGNA_APPKEY: YagnaKey,
-        },
-      });
-
-      YagnaGetpublic.stdout?.on('data', (data) => {
-        console.log(`Public Key: ${data}`);
-      });
-
-      function streamToString(
-        stream: Readable | null,
-        cb: { (data: unknown): void; (arg0: string): void }
-      ) {
-        const chunks: unknown[] = [];
-        stream?.on('data', (chunk: { toString: () => unknown }) => {
-          chunks.push(chunk.toString());
-        });
-        stream?.on('end', () => {
-          // eslint-disable-next-line promise/no-callback-in-promise
-          cb(chunks.join(''));
-        });
-      }
-
-      streamToString(YagnaGetpublic.stdout, (data) => {
-        console.log(`Public Address:${data.slice(66, -3)}`);
-        const PublicAddress = data.slice(66, -3);
-
-        // Sends public address to renderer
-        mainWindow.webContents.send('Public_Address_Send', PublicAddress);
-      }); */
       // eslint-disable-next-line func-names
       setTimeout(function () {
         // set yagna payment mode to sender

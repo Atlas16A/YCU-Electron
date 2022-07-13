@@ -169,7 +169,8 @@
     "files": [
       "dist",
       "node_modules",
-      "package.json"
+      "package.json",
+      "binaries/"
     ],
     "afterSign": ".erb/scripts/notarize.js",
     "mac": {
@@ -217,7 +218,14 @@
       "output": "release/build"
     },
     "extraResources": [
-      "./assets/**"
+      "./assets/**",
+      {
+        "from": "app/binaries",
+        "to": "binaries",
+        "filter": [
+          "**/*"
+        ]
+      }
     ]
   },
   "devEngines": {
