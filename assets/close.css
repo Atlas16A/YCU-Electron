@@ -7,6 +7,6 @@
   transition: stroke 300ms ease-in-out;
 }
 
-#close-svg:hover {
+.close-close:hover #close-svg {
   stroke: rgba(106, 128, 205, 100);
 }

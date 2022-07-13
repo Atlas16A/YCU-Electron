@@ -32,6 +32,7 @@ export default function Base() {
       <div className="base-content">
         <div className="base-content-overview">
           <div className="base-overview-group">
+            <div className="base-drag-area1" />
             <div className="base-overview-group-content">
               <div className="base-overview-text">
                 <p className="base-yagna-v080">Yagna V0.8.0</p>
@@ -57,6 +58,7 @@ export default function Base() {
         </div>
       </div>
       <div className="base-info-area">
+        <div className="base-drag-area2" />
         <div className="base-window-controls">
           <Minus />
           <Minimize />

@@ -2,3 +2,11 @@
   width: 24px;
   height: 24px;
 }
+
+#minus-svg {
+  transition: stroke 300ms ease-in-out;
+}
+
+.minus-minus:hover #minus-svg {
+  stroke: rgba(106, 128, 205, 100);
+}

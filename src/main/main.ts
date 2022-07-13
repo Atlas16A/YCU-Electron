@@ -12,7 +12,12 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import { spawn, exec } from 'child_process';
+import { Readable } from 'stream';
 import { resolveHtmlPath } from './util';
+
+const YagnaSource = path.join(__dirname, '../../assets/yagna/');
+let YagnaKey: any;
 
 class AppUpdater {
   constructor() {
@@ -57,6 +62,7 @@ const createWindow = async () => {
     height: 1024,
     transparent: true,
     useContentSize: true,
+    resizable: false,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -92,6 +98,15 @@ const createWindow = async () => {
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
+
+  console.log(YagnaSource);
+  // Start Yagna service
+  spawn('yagna', ['service', 'run'], {
+    // stdio: ['ignore', out, err],
+    // detached: true,
+    env: { PATH: YagnaSource },
+  });
+  // }).unref();
 };
 
 /**
@@ -115,5 +130,91 @@ app
       // dock icon is clicked and there are no other windows open.
       if (mainWindow === null) createWindow();
     });
+  })
+  .catch(console.log);
+
+app
+  .whenReady()
+  .then(() => {
+    // eslint-disable-next-line func-names
+    setTimeout(function () {
+      // Pulls Key from Yagna
+      const YagnaGetAPPKEY = exec(
+        `yagna app-key list --json | ${path.join(
+          YagnaSource,
+          'jq.exe'
+        )} -r .values[0]`,
+        {
+          env: { PATH: YagnaSource },
+        }
+      );
+
+      YagnaGetAPPKEY.stdout?.on('data', (data) => {
+        console.log(`Key Get: ${data}`);
+        YagnaKey = data;
+      });
+
+      YagnaGetAPPKEY.stderr?.on('data', (data) => {
+        console.error(`Key Get: ${data}`);
+      });
+
+      YagnaGetAPPKEY.on('close', (code) => {
+        console.log(`Key Get process exited with code ${code}`);
+      });
+
+      /* // Get public key
+      const YagnaGetpublic = exec('yagna id show', {
+        env: {
+          YAGNA_APPKEY: YagnaKey,
+        },
+      });
+
+      YagnaGetpublic.stdout?.on('data', (data) => {
+        console.log(`Public Key: ${data}`);
+      });
+
+      function streamToString(
+        stream: Readable | null,
+        cb: { (data: unknown): void; (arg0: string): void }
+      ) {
+        const chunks: unknown[] = [];
+        stream?.on('data', (chunk: { toString: () => unknown }) => {
+          chunks.push(chunk.toString());
+        });
+        stream?.on('end', () => {
+          // eslint-disable-next-line promise/no-callback-in-promise
+          cb(chunks.join(''));
+        });
+      }
+
+      streamToString(YagnaGetpublic.stdout, (data) => {
+        console.log(`Public Address:${data.slice(66, -3)}`);
+        const PublicAddress = data.slice(66, -3);
+
+        // Sends public address to renderer
+        mainWindow.webContents.send('Public_Address_Send', PublicAddress);
+      }); */
+      // eslint-disable-next-line func-names
+      setTimeout(function () {
+        // set yagna payment mode to sender
+        const YagnaPayMode = exec('yagna payment init --sender', {
+          env: {
+            YAGNA_APPKEY: YagnaKey,
+          },
+        });
+
+        YagnaPayMode.stdout?.on('data', (data) => {
+          console.log(`Sender mode: ${data}`);
+        });
+
+        YagnaPayMode.stderr?.on('data', (data) => {
+          console.error(`Sender mode error: ${data}`);
+        });
+
+        YagnaPayMode.on('close', (code) => {
+          console.log(`Sender mode process exited with code ${code}`);
+        });
+      }, 6000);
+    }, 6000);
   })
   .catch(console.log);

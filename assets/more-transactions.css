@@ -7,6 +7,6 @@
   transition: stroke 300ms ease-in-out;
 }
 
-#more-transactions-svg:hover {
+.more-transactions-more-transactions:hover #more-transactions-svg {
   stroke: rgba(106, 128, 205, 100);
 }

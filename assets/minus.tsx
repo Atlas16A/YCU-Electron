@@ -14,6 +14,7 @@ export default function Minus() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
+          id="minus-svg"
           d="M5 12H19"
           stroke="#737496"
           strokeWidth="2"

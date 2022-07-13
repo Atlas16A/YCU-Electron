@@ -181,7 +181,7 @@ body {
   display: flex;
   box-sizing: border-box;
   align-items: flex-end;
-  padding-top: 30px;
+  padding-top: 0px;
   padding-left: 16px;
   padding-right: 16px;
   flex-direction: column;
@@ -196,7 +196,6 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  -webkit-app-region: drag;
 }
 .base-info-area-content {
   gap: 39px;
@@ -267,4 +266,11 @@ body {
   flex-direction: column;
   padding-bottom: 3px;
   justify-content: flex-start;
+}
+
+.base-drag-area2 {
+  width: 517px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  -webkit-app-region: drag;
 }
