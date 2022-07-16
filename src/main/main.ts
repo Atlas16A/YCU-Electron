@@ -13,8 +13,84 @@ import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { spawn, exec } from 'child_process';
+import fs, { existsSync } from 'fs';
+import https from 'https';
+import extract from 'extract-zip';
+import { URL } from 'url';
 import { resolveHtmlPath } from './util';
 
+const appRootDir = require('app-root-dir').get();
+
+console.log(appRootDir);
+// This monstrosity is the best way to ensure YCU has yagna and jq available, because electron is stupid and wont package them inside it.
+// -----------------------------------------------------------------------------------------------------------
+const BinaryCheck = path.join(appRootDir, 'Binaries/');
+
+if (fs.existsSync(BinaryCheck) === true) {
+  const YagnaSource = path.join(appRootDir, 'Binaries/');
+
+  console.log(YagnaSource);
+  // Start Yagna service
+  spawn('yagna', ['service', 'run'], {
+    // stdio: ['ignore', out, err],
+    // detached: true,
+    env: { PATH: YagnaSource },
+  });
+  console.log('yagna running');
+}
+
+async function f() {
+  if (fs.existsSync(BinaryCheck) === false) {
+    console.log('No Binaries: Downloading...');
+    // eslint-disable-next-line no-inner-declarations
+    async function downloadFile(
+      DownloadURL: string | https.RequestOptions | URL,
+      makePath: fs.PathLike
+    ) {
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      return new Promise((resolve, reject) => {
+        https
+          // eslint-disable-next-line consistent-return
+          .get(DownloadURL, (response) => {
+            const code = response.statusCode ?? 0;
+
+            if (code >= 400) {
+              return reject(new Error(response.statusMessage));
+            }
+
+            // handle redirects
+            if (code > 300 && code < 400 && !!response.headers.location) {
+              return downloadFile(response.headers.location, makePath);
+            }
+
+            // save the file to disk
+            const fileWriter = fs
+              .createWriteStream(makePath)
+              .on('finish', () => {
+                extract(path.join(appRootDir, 'Binaries.zip'), {
+                  dir: path.join(appRootDir, 'Binaries/'),
+                });
+                resolve({});
+              });
+
+            response.pipe(fileWriter);
+          })
+          .on('error', (error) => {
+            reject(error);
+          });
+      });
+    }
+
+    const DownloadURL = `https://github.com/golemfactory/yagna/releases/download/v0.10.1/golem-requestor-windows-v0.10.1.zip`;
+    console.log('why dont you work');
+    await downloadFile(DownloadURL, 'Binaries.zip');
+    console.log('work pls');
+    app.relaunch();
+    app.exit();
+  }
+}
+f();
+// ----------------------------------------------------------------------------------------------------------
 class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -43,13 +119,7 @@ if (isDebug) {
   require('electron-debug')();
 }
 
-const YagnaSource = path.join('release/app/binaries');
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let YagnaKey: any;
-
-console.log(YagnaSource);
-
-const jq = path.join(YagnaSource, 'jq.exe');
+const jq = path.join(`${appRootDir}/bin/jq.exe`);
 
 const createWindow = async () => {
   const RESOURCES_PATH = app.isPackaged
@@ -102,15 +172,6 @@ const createWindow = async () => {
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
-
-  console.log(YagnaSource);
-  // Start Yagna service
-  spawn('yagna', ['service', 'run'], {
-    // stdio: ['ignore', out, err],
-    // detached: true,
-    env: { PATH: YagnaSource },
-  });
-  // }).unref();
 };
 
 /**
@@ -137,7 +198,7 @@ app
   })
   .catch(console.log);
 
-app
+/* app
   .whenReady()
   .then(() => {
     // eslint-disable-next-line func-names
@@ -186,4 +247,4 @@ app
       }, 6000);
     }, 6000);
   })
-  .catch(console.log);
+  .catch(console.log); */

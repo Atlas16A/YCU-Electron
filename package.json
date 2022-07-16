@@ -87,9 +87,11 @@
     }
   },
   "dependencies": {
+    "app-root-dir": "^1.0.2",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.7",
     "electron-updater": "^5.0.3",
+    "extract-zip": "^2.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0"
@@ -169,8 +171,7 @@
     "files": [
       "dist",
       "node_modules",
-      "package.json",
-      "binaries"
+      "package.json"
     ],
     "afterSign": ".erb/scripts/notarize.js",
     "mac": {
@@ -218,14 +219,7 @@
       "output": "release/build"
     },
     "extraResources": [
-      "./assets/**",
-      {
-        "from": "app/binaries",
-        "to": "binaries",
-        "filter": [
-          "**/*"
-        ]
-      }
+      "./assets/**"
     ]
   },
   "devEngines": {
