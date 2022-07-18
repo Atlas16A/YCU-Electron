@@ -26,18 +26,7 @@ console.log(appRootDir);
 // -----------------------------------------------------------------------------------------------------------
 const BinaryCheck = path.join(appRootDir, 'Binaries/');
 
-if (fs.existsSync(BinaryCheck) === true) {
-  const YagnaSource = path.join(appRootDir, 'Binaries/');
-
-  console.log(YagnaSource);
-  // Start Yagna service
-  spawn('yagna', ['service', 'run'], {
-    // stdio: ['ignore', out, err],
-    // detached: true,
-    env: { PATH: YagnaSource },
-  });
-  console.log('yagna running');
-}
+const BinDownloadURL = `https://github.com/Atlas16A/ycu-binaries/archive/refs/tags/Ready.zip`;
 
 async function f() {
   if (fs.existsSync(BinaryCheck) === false) {
@@ -48,7 +37,7 @@ async function f() {
       makePath: fs.PathLike
     ) {
       // eslint-disable-next-line @typescript-eslint/no-shadow
-      return new Promise((resolve, reject) => {
+      const promise = new Promise((resolve, reject) => {
         https
           // eslint-disable-next-line consistent-return
           .get(DownloadURL, (response) => {
@@ -70,6 +59,19 @@ async function f() {
                 extract(path.join(appRootDir, 'Binaries.zip'), {
                   dir: path.join(appRootDir, 'Binaries/'),
                 });
+                setTimeout(() => {
+                  const YagnaSource = path.join(appRootDir, 'Binaries/');
+
+                  console.log(YagnaSource);
+                  // Start Yagna service
+                  spawn('yagna', ['service', 'run'], {
+                    // stdio: ['ignore', out, err],
+                    // detached: true,
+                    env: { PATH: YagnaSource },
+                  });
+                  console.log('yagna running 2');
+                }, 5000);
+
                 resolve({});
               });
 
@@ -79,17 +81,25 @@ async function f() {
             reject(error);
           });
       });
+      return promise;
     }
-
-    const DownloadURL = `https://github.com/golemfactory/yagna/releases/download/v0.10.1/golem-requestor-windows-v0.10.1.zip`;
     console.log('why dont you work');
-    await downloadFile(DownloadURL, 'Binaries.zip');
-    console.log('work pls');
-    app.relaunch();
-    app.exit();
+    await downloadFile(BinDownloadURL, 'Binaries.zip');
+  } else {
+    const YagnaSource = path.join(appRootDir, 'Binaries/');
+
+    console.log(YagnaSource);
+    // Start Yagna service
+    spawn('yagna', ['service', 'run'], {
+      // stdio: ['ignore', out, err],
+      // detached: true,
+      env: { PATH: YagnaSource },
+    });
+    console.log('yagna running 1');
   }
 }
 f();
+
 // ----------------------------------------------------------------------------------------------------------
 class AppUpdater {
   constructor() {
