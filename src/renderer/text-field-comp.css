@@ -1,0 +1,23 @@
+.text-field-comp-file-path {
+  gap: 10px;
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding-top: 11px;
+  padding-left: 171px;
+  border-radius: 15px;
+  padding-right: 171px;
+  padding-bottom: 11px;
+  justify-content: center;
+  background-color: rgba(115, 116, 150, 1);
+}
+.text-field-comp-x {
+  color: rgba(42, 43, 66, 1);
+  font-size: 15px;
+  text-align: center;
+  font-family: Gill Sans MT;
+  font-weight: 700;
+  line-height: normal;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}

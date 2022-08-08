@@ -192,7 +192,8 @@ body {
   border-bottom-right-radius: 30px;
 }
 .base-window-controls {
-  gap: 39px;
+  gap: 20px;
+  margin-right: 45px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -271,6 +272,6 @@ body {
 .base-drag-area2 {
   width: 517px;
   height: 30px;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(27, 1, 43, 0);
   -webkit-app-region: drag;
 }

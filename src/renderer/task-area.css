@@ -1,0 +1,80 @@
+.task-area-task-area {
+  gap: 17px;
+  display: inline-flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.task-area-network-task {
+  color: white;
+  width: 585px;
+  height: 73px;
+  font-size: 32px;
+  text-align: center;
+  font-family: Gill Sans MT;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}
+.task-area-address {
+  gap: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.task-area-task-script {
+  color: rgba(115, 116, 150, 1);
+  width: 190px;
+  height: 51px;
+  font-size: 15px;
+  text-align: center;
+  font-family: Gill Sans MT;
+  font-weight: 700;
+  line-height: normal;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}
+.task-area-task-scripts-are-how {
+  color: rgba(115, 116, 150, 1);
+  width: 478px;
+  height: 51px;
+  font-size: 12px;
+  text-align: center;
+  font-family: Gill Sans MT;
+  font-weight: 700;
+  line-height: normal;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}
+.task-area-frame8 {
+  gap: 10px;
+  width: 585px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.task-area-button {
+  gap: 10px;
+  width: 218px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding-top: 11px;
+  border-radius: 15px;
+  padding-bottom: 11px;
+  justify-content: center;
+  background-color: rgba(115, 116, 150, 1);
+}
+.task-area-run-task {
+  color: rgba(42, 43, 66, 1);
+  width: 149px;
+  font-size: 15px;
+  text-align: center;
+  font-family: Gill Sans MT;
+  font-weight: 700;
+  line-height: normal;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}

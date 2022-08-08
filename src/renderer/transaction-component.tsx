@@ -6,17 +6,20 @@ import './transaction-component.css';
 
 export default function TransactionComponent() {
   const [Task, setTask] = useState([
-    { id: '1', Name: 'Blender Render', Time: '00:00:00:01', Cost: '0.05' },
-    { id: '2', Name: 'Blender Render', Time: '00:00:00:11', Cost: '0.15' },
-    { id: '3', Name: 'Blender Render', Time: '00:00:00:31', Cost: '0.55' },
-    { id: '4', Name: 'Blender Render', Time: '00:00:10:11', Cost: '6.70' },
-    { id: '5', Name: 'Blender Render', Time: '00:00:00:11', Cost: '0.15' },
+    { key: '1', Name: 'Blender Render', Time: '00:00:00:01', Cost: '0.05' },
+    { key: '2', Name: 'Blender Render', Time: '00:00:00:11', Cost: '0.15' },
+    { key: '3', Name: 'Blender Render', Time: '00:00:00:31', Cost: '0.55' },
+    { key: '4', Name: 'Blender Render', Time: '00:00:10:11', Cost: '6.70' },
+    { key: '5', Name: 'Blender Render', Time: '00:00:00:11', Cost: '0.15' },
   ]);
 
   return (
     <>
       {Task.map((Task) => (
-        <div className="transaction-component-transaction-component">
+        <div
+          className="transaction-component-transaction-component"
+          key={Task.key}
+        >
           <div className="transaction-component-task">
             <div className="transaction-component-golrend-logo2">
               <div className="transaction-component-golrend-logo21" />
@@ -24,7 +27,7 @@ export default function TransactionComponent() {
             <div className="transaction-component-task-info">
               <div className="transaction-component-num-name-frame">
                 <div className="transaction-component-num-frame">
-                  <p className="transaction-component-component">{Task.id}</p>
+                  <p className="transaction-component-component">{Task.key}</p>
                 </div>
                 <div className="transaction-component-name-frame">
                   <p className="transaction-component-name">{Task.Name}</p>

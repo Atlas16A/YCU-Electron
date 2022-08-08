@@ -171,7 +171,8 @@
     "files": [
       "dist",
       "node_modules",
-      "package.json"
+      "package.json",
+      "Binaries/ycu-binaries-Ready"
     ],
     "afterSign": ".erb/scripts/notarize.js",
     "mac": {
@@ -219,7 +220,8 @@
       "output": "release/build"
     },
     "extraResources": [
-      "./assets/**"
+      "./assets/**",
+      "./Binaries/**"
     ]
   },
   "devEngines": {

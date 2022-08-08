@@ -8,13 +8,24 @@ import Swap from '../../assets/swap';
 import MarketTrend from '../../assets/market-trend';
 import Settings from '../../assets/settings';
 import Minus from '../../assets/minus';
-import Minimize from '../../assets/minimize';
 import Close from '../../assets/close';
 import MarketGraphSml from './market-graph-sml';
 import MoreTransactions from '../../assets/more-transactions';
 import LessTransactions from '../../assets/less-transactions';
 import TransactionComponent from './transaction-component';
+import TaskArea from './task-area';
 import './base.css';
+
+const MINUS = document.getElementById('minus');
+const CLOSE = document.getElementById('close');
+
+MINUS?.addEventListener('click', () => {
+  console.log('help m');
+  window.electron.minimize('minimize');
+});
+CLOSE?.addEventListener('click', () => {
+  window.electron.close('close');
+});
 
 export default function Base() {
   return (
@@ -61,7 +72,6 @@ export default function Base() {
         <div className="base-drag-area2" />
         <div className="base-window-controls">
           <Minus />
-          <Minimize />
           <Close />
         </div>
         <div className="base-info-area-content">
@@ -81,7 +91,7 @@ export default function Base() {
             </div>
           </div>
           <div className="base-transactions-history">
-            <TransactionComponent variant="PROPERTY1=DEFAULT_TYPE0" />
+            <TransactionComponent />
           </div>
         </div>
       </div>
