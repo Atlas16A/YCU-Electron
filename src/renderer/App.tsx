@@ -20,7 +20,7 @@ const MINUS = document.getElementById('minus');
 const CLOSE = document.getElementById('close');
 
 MINUS?.addEventListener('click', () => {
-  console.log('help m');
+  console.log('help me');
   window.electron.minimize('minimize');
 });
 CLOSE?.addEventListener('click', () => {
@@ -62,11 +62,19 @@ export default function Base() {
                 </div>
               </div>
               <div className="base-change-logs-button">
-                <p className="base-c-h-a-n-g-e-l-o-g-s">CHANGELOGS</p>
+                <a
+                  className="base-c-h-a-n-g-e-l-o-g-s"
+                  href="https://github.com/Atlas16A/YCU-Electron"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  CHANGELOGS
+                </a>
               </div>
             </div>
           </div>
         </div>
+        <TaskArea />
       </div>
       <div className="base-info-area">
         <div className="base-drag-area2" />

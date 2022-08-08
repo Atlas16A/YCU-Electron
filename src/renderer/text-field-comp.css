@@ -10,7 +10,13 @@
   padding-bottom: 11px;
   justify-content: center;
   background-color: rgba(115, 116, 150, 1);
+  transition: 300ms ease-in-out;
 }
+
+.text-field-comp-file-path:hover {
+  background-color: rgb(106, 128, 205);
+}
+
 .text-field-comp-x {
   color: rgba(42, 43, 66, 1);
   font-size: 15px;

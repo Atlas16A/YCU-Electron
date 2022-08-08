@@ -1,23 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-import './text-field-comp.css'
+import './text-field-comp.css';
 
-export default function TextFieldComp(props: TextFieldCompInterface) {
+export default function TextFieldComp() {
   return (
     <>
-      {props.firejetVariant === 'TYPE0' && (
-        <div className="text-field-comp-file-path">
-          <p className="text-field-comp-x">...</p>
-        </div>
-      )}
+      <div className="text-field-comp-file-path">
+        <p className="text-field-comp-x">...</p>
+      </div>
     </>
-  )
+  );
 }
 
 TextFieldComp.defaultProps = {
-  firejetVariant: 'TYPE0',
+  // eslint-disable-next-line react/default-props-match-prop-types
   text: '0x...',
-}
+};
 
 interface TextFieldCompInterface {
   firejetVariant: 'TYPE0';

@@ -43,6 +43,10 @@ if (isDebug) {
   );
   process.env.jq = path.join(appRootDir, 'Binaries/ycu-binaries-Ready/jq.exe');
 } else if (process.env.NODE_ENV === 'production') {
+  writeFile('log.txt', appRootDir, (err) => {
+    if (err) throw err;
+    console.log('The file has been saved!');
+  });
   process.env.YagnaSource = path.join(
     appRootDir,
     '../../Binaries/ycu-binaries-Ready'
@@ -54,11 +58,6 @@ if (isDebug) {
 }
 
 let YagnaKey: unknown;
-
-writeFile('log.txt', appRootDir, (err) => {
-  if (err) throw err;
-  console.log('The file has been saved!');
-});
 
 spawn('yagna', ['service', 'run'], {
   // stdio: ['ignore', out, err],

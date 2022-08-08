@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import TextFieldComp from './text-field-comp'
-import './task-area.css'
+import TextFieldComp from './text-field-comp';
+import './task-area.css';
 
 export default function TaskArea() {
   return (
@@ -9,7 +9,7 @@ export default function TaskArea() {
       <p className="task-area-network-task">Network Task</p>
       <div className="task-area-address">
         <p className="task-area-task-script">Task Script:</p>
-        <TextFieldComp firejetVariant="TYPE0" />
+        <TextFieldComp text="..." />
       </div>
       <p className="task-area-task-scripts-are-how">
         Task Scripts are how Golem processes whatever you want to do. You can
@@ -22,5 +22,5 @@ export default function TaskArea() {
         </div>
       </div>
     </div>
-  )
+  );
 }
