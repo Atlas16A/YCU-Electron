@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld('electron', {
-  close: () => ipcRenderer.send('close'),
-  minimize: () => ipcRenderer.send('minimize'),
+  close: (args: unknown) => ipcRenderer.send('close', args),
+  minimize: (args: unknown) => ipcRenderer.send('minimize', args),
 });

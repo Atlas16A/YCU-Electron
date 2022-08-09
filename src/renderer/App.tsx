@@ -16,93 +16,98 @@ import TransactionComponent from './transaction-component';
 import TaskArea from './task-area';
 import './base.css';
 
-const MINUS = document.getElementById('minus');
-const CLOSE = document.getElementById('close');
+class Base extends React.Component {
+  componentDidMount() {
+    const MINUS = document.getElementById('minus');
+    const CLOSE = document.getElementById('close');
 
-MINUS?.addEventListener('click', () => {
-  console.log('help me');
-  window.electron.minimize('minimize');
-});
-CLOSE?.addEventListener('click', () => {
-  window.electron.close('close');
-});
+    MINUS?.addEventListener('click', () => {
+      window.electron.minimize('minimize');
+    });
+    CLOSE?.addEventListener('click', () => {
+      window.electron.close('close');
+    });
+  }
 
-export default function Base() {
-  return (
-    <div className="base-base">
-      <div className="base-nav-bar">
-        <GolrendLogo1 />
-        <Home />
-        <Server />
-        <SendReceive />
-        <Swap />
-        <MarketTrend />
-        <Settings />
-        <p className="base-y-c-u-version">V 0.0.1 Beta</p>
-      </div>
-      <div className="base-content">
-        <div className="base-content-overview">
-          <div className="base-overview-group">
-            <div className="base-drag-area1" />
-            <div className="base-overview-group-content">
-              <div className="base-overview-text">
-                <p className="base-yagna-v080">Yagna V0.8.0</p>
-                <div className="base-overview-main-text">
-                  <p className="base-yagna-control">Yagna Control</p>
-                  <div className="base-welcome-to-yagna-con">
-                    <p className="base-welcome-to-yagna-con1">
-                      Welcome to Yagna Control UI!
-                      <br />
-                    </p>
-                    <p className="base-to-keep-up-to-date">
-                      <br />
-                      To keep up-to-date with Software changes check the logs.
-                    </p>
+  render() {
+    return (
+      <div className="base-base">
+        <div className="base-nav-bar">
+          <GolrendLogo1 />
+          <Home />
+          <Server />
+          <SendReceive />
+          <Swap />
+          <MarketTrend />
+          <Settings />
+          <p className="base-y-c-u-version">V 0.0.1 Beta</p>
+        </div>
+        <div className="base-content">
+          <div className="base-content-overview">
+            <div className="base-overview-group">
+              <div className="base-drag-area1" />
+              <div className="base-overview-group-content">
+                <div className="base-overview-text">
+                  <p className="base-yagna-v080">Yagna V0.8.0</p>
+                  <div className="base-overview-main-text">
+                    <p className="base-yagna-control">Yagna Control</p>
+                    <div className="base-welcome-to-yagna-con">
+                      <p className="base-welcome-to-yagna-con1">
+                        Welcome to Yagna Control UI!
+                        <br />
+                      </p>
+                      <p className="base-to-keep-up-to-date">
+                        <br />
+                        To keep up-to-date with Software changes check the logs.
+                      </p>
+                    </div>
                   </div>
                 </div>
+                <div className="base-change-logs-button">
+                  <a
+                    className="base-c-h-a-n-g-e-l-o-g-s"
+                    href="https://github.com/Atlas16A/YCU-Electron"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    CHANGELOGS
+                  </a>
+                </div>
               </div>
-              <div className="base-change-logs-button">
-                <a
-                  className="base-c-h-a-n-g-e-l-o-g-s"
-                  href="https://github.com/Atlas16A/YCU-Electron"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  CHANGELOGS
-                </a>
+            </div>
+          </div>
+          <TaskArea />
+        </div>
+        <div className="base-info-area">
+          <div className="base-drag-area2" />
+          <div className="base-window-controls">
+            <Minus />
+            <Close />
+          </div>
+          <div className="base-info-area-content">
+            <div className="base-quick-market_data">
+              <p className="base-market">Market</p>
+              <div className="base-market-graphs">
+                <MarketGraphSml variant="TYPE0" />
+                <MarketGraphSml variant="TYPE1" />
+                <MarketGraphSml variant="TYPE2" />
               </div>
             </div>
-          </div>
-        </div>
-        <TaskArea />
-      </div>
-      <div className="base-info-area">
-        <div className="base-drag-area2" />
-        <div className="base-window-controls">
-          <Minus />
-          <Close />
-        </div>
-        <div className="base-info-area-content">
-          <div className="base-quick-market_data">
-            <p className="base-market">Market</p>
-            <div className="base-market-graphs">
-              <MarketGraphSml variant="TYPE0" />
-              <MarketGraphSml variant="TYPE1" />
-              <MarketGraphSml variant="TYPE2" />
+            <div className="base-transactions">
+              <p className="base-transactions-title">Transactions</p>
+              <div className="base-transactions-navigation">
+                <MoreTransactions />
+                <LessTransactions />
+              </div>
             </div>
-          </div>
-          <div className="base-transactions">
-            <p className="base-transactions-title">Transactions</p>
-            <div className="base-transactions-navigation">
-              <MoreTransactions />
-              <LessTransactions />
+            <div className="base-transactions-history">
+              <TransactionComponent />
             </div>
-          </div>
-          <div className="base-transactions-history">
-            <TransactionComponent />
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default Base;
