@@ -13,11 +13,11 @@ export default function TaskArea() {
       </div>
       <p className="task-area-task-scripts-are-how">
         Task Scripts are how Golem processes whatever you want to do. You can
-        make your own scripts in either Python or Javascript, or you can use an
-        already made script that you trust.
+        make your own scripts in Javascript, or you can use an already made
+        script that you trust.
       </p>
       <div className="task-area-frame8">
-        <div className="task-area-button">
+        <div className="task-area-button" id="TaskRun">
           <p className="task-area-run-task">Run Task</p>
         </div>
       </div>

@@ -6,11 +6,7 @@ import './transaction-component.css';
 
 export default function TransactionComponent() {
   const [Task, setTask] = useState([
-    { key: '1', Name: 'Blender Render', Time: '00:00:00:01', Cost: '0.05' },
-    { key: '2', Name: 'Blender Render', Time: '00:00:00:11', Cost: '0.15' },
-    { key: '3', Name: 'Blender Render', Time: '00:00:00:31', Cost: '0.55' },
-    { key: '4', Name: 'Blender Render', Time: '00:00:10:11', Cost: '6.70' },
-    { key: '5', Name: 'Blender Render', Time: '00:00:00:11', Cost: '0.15' },
+    { key: '1', Name: 'Lorem', Time: '00:00:00:00', Cost: '0.00' },
   ]);
 
   return (

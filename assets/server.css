@@ -2,3 +2,20 @@
   width: 40px;
   height: 40px;
 }
+
+#server-bg-svg {
+  transition: 300ms ease-in-out;
+}
+
+.server-server:hover #server-bg-svg {
+  border-radius: 20%;
+  box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.199);
+}
+
+#server-path-svg {
+  transition: stroke 300ms ease-in-out;
+}
+
+.server-server:hover #server-path-svg {
+  stroke: rgba(106, 128, 205, 100);
+}

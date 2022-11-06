@@ -2,3 +2,20 @@
   width: 40px;
   height: 40px;
 }
+
+#market-trend-bg-svg {
+  transition: 300ms ease-in-out;
+}
+
+.market-trend-market-trend:hover #market-trend-bg-svg {
+  border-radius: 20%;
+  box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.199);
+}
+
+#market-trend-path-svg {
+  transition: stroke 300ms ease-in-out;
+}
+
+.market-trend-market-trend:hover #market-trend-path-svg {
+  stroke: rgba(106, 128, 205, 100);
+}

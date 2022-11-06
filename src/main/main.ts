@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
 import { spawn, exec } from 'child_process';
 /* import fs, { existsSync } from 'fs';
 import https from 'https';
@@ -57,7 +57,7 @@ if (isDebug) {
   );
 }
 
-let YagnaKey: unknown;
+let YagnaKey: string | undefined;
 
 spawn('yagna', ['service', 'run'], {
   // stdio: ['ignore', out, err],
@@ -166,6 +166,30 @@ const createWindow = async () => {
 
   ipcMain.on('minimize', () => {
     mainWindow?.minimize();
+  });
+
+  let taskscript: string[] | undefined;
+
+  ipcMain.on('TaskSelect', () => {
+    dialog
+      .showOpenDialog({
+        properties: ['openFile'],
+      })
+      .then((result) => {
+        console.log(result.canceled);
+        console.log(result.filePaths);
+        taskscript = result.filePaths;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  ipcMain.on('TaskRun', () => {
+    if (taskscript !== undefined || null) {
+      // handle run
+      console.log(taskscript);
+    }
   });
 };
 

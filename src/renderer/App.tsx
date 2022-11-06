@@ -20,12 +20,20 @@ class Base extends React.Component {
   componentDidMount() {
     const MINUS = document.getElementById('minus');
     const CLOSE = document.getElementById('close');
+    const TASKSELECT = document.getElementById('TaskSelect');
+    const TASKRUN = document.getElementById('TaskRun');
 
     MINUS?.addEventListener('click', () => {
       window.electron.minimize('minimize');
     });
     CLOSE?.addEventListener('click', () => {
       window.electron.close('close');
+    });
+    TASKSELECT?.addEventListener('click', () => {
+      window.electron.taskselect('TaskSelect');
+    });
+    TASKRUN?.addEventListener('click', () => {
+      window.electron.taskrun('TaskRun');
     });
   }
 
@@ -77,6 +85,7 @@ class Base extends React.Component {
             </div>
           </div>
           <TaskArea />
+          {/* Need to add state managment to switch from TaskArea to other Areas like market wallet etc. */}
         </div>
         <div className="base-info-area">
           <div className="base-drag-area2" />
@@ -86,7 +95,7 @@ class Base extends React.Component {
           </div>
           <div className="base-info-area-content">
             <div className="base-quick-market_data">
-              <p className="base-market">Market</p>
+              <p className="base-market">Market WIP</p>
               <div className="base-market-graphs">
                 <MarketGraphSml variant="TYPE0" />
                 <MarketGraphSml variant="TYPE1" />
@@ -94,7 +103,7 @@ class Base extends React.Component {
               </div>
             </div>
             <div className="base-transactions">
-              <p className="base-transactions-title">Transactions</p>
+              <p className="base-transactions-title">Transactions WIP</p>
               <div className="base-transactions-navigation">
                 <MoreTransactions />
                 <LessTransactions />

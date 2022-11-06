@@ -25,7 +25,7 @@
   width: 72px;
   height: 72px;
   background-size: cover;
-  background-image: url(https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/5938/3642f63196a88bbbd17ba0e8db02f0134b5c696b.webp);
+  background-image: url(../../assets/icon.svg);
 }
 .transaction-component-task-info {
   gap: 6px;
