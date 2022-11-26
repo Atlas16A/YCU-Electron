@@ -168,7 +168,7 @@ const createWindow = async () => {
     mainWindow?.minimize();
   });
 
-  let taskscript: string[] | undefined;
+  let taskscript: string;
 
   ipcMain.on('TaskSelect', () => {
     dialog
@@ -178,7 +178,7 @@ const createWindow = async () => {
       .then((result) => {
         console.log(result.canceled);
         console.log(result.filePaths);
-        taskscript = result.filePaths;
+        taskscript = result.filePaths.join();
       })
       .catch((err) => {
         console.log(err);
@@ -188,7 +188,12 @@ const createWindow = async () => {
   ipcMain.on('TaskRun', () => {
     if (taskscript !== undefined || null) {
       // handle run
-      console.log(taskscript);
+      const TaskScriptParsed = path.parse(taskscript);
+      console.log(TaskScriptParsed.dir);
+      console.log(TaskScriptParsed.base);
+      spawn(`cd ${[TaskScriptParsed.dir]} && ${[TaskScriptParsed.base]}`, {
+        shell: true,
+      });
     }
   });
 };

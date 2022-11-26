@@ -56,12 +56,12 @@ class Base extends React.Component {
               <div className="base-drag-area1" />
               <div className="base-overview-group-content">
                 <div className="base-overview-text">
-                  <p className="base-yagna-v080">Yagna V0.8.0</p>
+                  <p className="base-yagna-v080">Yagna V0.9.2</p>
                   <div className="base-overview-main-text">
-                    <p className="base-yagna-control">Yagna Control</p>
+                    <p className="base-yagna-control">Qaiseo</p>
                     <div className="base-welcome-to-yagna-con">
                       <p className="base-welcome-to-yagna-con1">
-                        Welcome to Yagna Control UI!
+                        Welcome to Qaiseo!
                         <br />
                       </p>
                       <p className="base-to-keep-up-to-date">
