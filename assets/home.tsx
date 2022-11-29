@@ -1,10 +1,18 @@
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { AreaUpdate } from 'renderer/user-control-areaSlice';
 
 import './home.css';
 
 export default function Home() {
+  const dispatch = useDispatch();
+
   return (
-    <div className="home-home" id="home">
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div
+      className="home-home"
+      id="home"
+      onClick={() => dispatch(AreaUpdate('Home'))}
+    >
       <svg
         id="home-bg-svg"
         width="100%"

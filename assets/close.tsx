@@ -4,7 +4,14 @@ import './close.css';
 
 export default function Close() {
   return (
-    <div className="close-close" id="close">
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div
+      className="close-close"
+      id="close"
+      onClick={() => {
+        window.electron.close('close');
+      }}
+    >
       <svg
         width="100%"
         height="100%"

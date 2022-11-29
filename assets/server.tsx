@@ -1,10 +1,18 @@
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { AreaUpdate } from 'renderer/user-control-areaSlice';
 
 import './server.css';
 
 export default function Server() {
+  const dispatch = useDispatch();
+
   return (
-    <div className="server-server" id="server">
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div
+      className="server-server"
+      id="server"
+      onClick={() => dispatch(AreaUpdate('Task'))}
+    >
       <svg
         id="server-bg-svg"
         width="100%"

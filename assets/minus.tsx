@@ -4,7 +4,14 @@ import './minus.css';
 
 export default function Minus() {
   return (
-    <div className="minus-minus" id="minus">
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div
+      className="minus-minus"
+      id="minus"
+      onClick={() => {
+        window.electron.minimize('minimize');
+      }}
+    >
       <svg
         width="100%"
         height="100%"
